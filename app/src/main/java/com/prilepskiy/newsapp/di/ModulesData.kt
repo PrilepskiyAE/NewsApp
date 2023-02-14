@@ -1,7 +1,9 @@
 package com.prilepskiy.newsapp.di
 
 import com.prilepskiy.newsapp.data.apiservice.NewsApiService
+import com.prilepskiy.newsapp.data.repository.NewsRepositoryImpl
 import com.prilepskiy.newsapp.data.util.HeaderInterceptor
+import com.prilepskiy.newsapp.domain.repository.NewsRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -45,4 +47,11 @@ object NetworkModule {
 class  NewsApiModule(){
     @Provides
     fun provideApiModule(retrofit: Retrofit): NewsApiService =retrofit.create(NewsApiService::class.java)
+}
+
+@Module
+@InstallIn(ViewModelComponent::class)
+class RepModule(){
+    @Provides
+    fun provideNewsRepositoryModule(data:NewsApiService): NewsRepository=NewsRepositoryImpl(data)
 }

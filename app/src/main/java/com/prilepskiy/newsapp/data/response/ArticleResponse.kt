@@ -1,5 +1,7 @@
 package com.prilepskiy.newsapp.data.response
 
+import com.prilepskiy.newsapp.domain.model.NewsModel
+
 data class ArticleResponse(
     val author: String,
     val content: String,
@@ -9,3 +11,4 @@ data class ArticleResponse(
     val url: String,
     val urlToImage: String
 )
+
