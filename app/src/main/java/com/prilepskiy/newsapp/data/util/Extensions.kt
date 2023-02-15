@@ -1,5 +1,6 @@
 package com.prilepskiy.newsapp.core
 
+
 import retrofit2.Response
 
 suspend fun <R> makeApiCall(call: suspend () -> ActionResult<R>) = try {
@@ -23,3 +24,6 @@ fun <Model> analyzeResponse(
         }
     }
 }
+
+
+

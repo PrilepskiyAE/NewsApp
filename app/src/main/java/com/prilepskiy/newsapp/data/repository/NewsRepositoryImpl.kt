@@ -1,7 +1,9 @@
 package com.prilepskiy.newsapp.data.repository
 
+import android.util.Log
 import com.prilepskiy.newsapp.core.ActionResult
 import com.prilepskiy.newsapp.core.analyzeResponse
+import com.prilepskiy.newsapp.core.data
 import com.prilepskiy.newsapp.core.makeApiCall
 import com.prilepskiy.newsapp.data.apiservice.NewsApiService
 import com.prilepskiy.newsapp.domain.model.NewsModel
@@ -17,11 +19,13 @@ class NewsRepositoryImpl(private val data:NewsApiService): NewsRepository {
         }
         return when(apiData){
             is ActionResult.Success -> {
-                apiData.data.article.onEach {
+                apiData.data.articles.onEach {
                     result.add(
                         NewsModel.from(it)
                     )
+
                 }
+
                 ActionResult.Success(result)
             }
             is ActionResult.Error -> {
@@ -38,7 +42,7 @@ class NewsRepositoryImpl(private val data:NewsApiService): NewsRepository {
         }
         return when(apiData){
             is ActionResult.Success -> {
-                apiData.data.article.onEach {
+                apiData.data.articles?.onEach {
                     result.add(
                         NewsModel.from(it)
                     )
