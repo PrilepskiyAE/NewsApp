@@ -62,7 +62,7 @@ class NewsListActivity : ComponentActivity() {
                             selectedItem=     {
                             url, Title->
                             viewModel.saveUrlNews(url, Title)
-                        }, selectedUrl = {return@ScreenMain viewModel.news.value!! },{viewModel.getNews(it)})
+                        }, selectedUrl = {return@ScreenMain viewModel.news.value!! },{viewModel.getNews(it)},{viewModel.getTopNews()})
                     }
                 }
             }

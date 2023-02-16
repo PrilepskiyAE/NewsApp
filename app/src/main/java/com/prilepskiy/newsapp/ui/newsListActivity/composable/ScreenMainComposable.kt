@@ -18,14 +18,14 @@ import com.prilepskiy.newsapp.core.swapList
 import com.prilepskiy.newsapp.domain.model.NewsModel
 
 @Composable
-fun ScreenMain(list: List<NewsModel>, selectedItem: (String,String)->Unit, selectedUrl: () -> Pair<String,String>,searchNews: (String)->Unit) {
+fun ScreenMain(list: List<NewsModel>, selectedItem: (String,String)->Unit, selectedUrl: () -> Pair<String,String>,searchNews: (String)->Unit,topNews: ()->Unit) {
     val navController = rememberNavController()
     val newsList = remember { mutableStateListOf<NewsModel>() }
     newsList.swapList(list)
     NavHost(navController = navController, startDestination = Routes.DisplayNews.route){
         composable(Routes.DisplayNews.route) {
             Column() {
-                TopAppBarNewsList(searchNews)
+                TopAppBarNewsList(searchNews,topNews)
                 DisplayNews(navController = navController, newsList, selectedItem)
             }
 
