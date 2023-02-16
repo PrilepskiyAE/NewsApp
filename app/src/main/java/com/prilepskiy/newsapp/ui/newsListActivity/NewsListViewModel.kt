@@ -22,10 +22,16 @@ class NewsListViewModel@Inject constructor(private val getNewsUseCase: GetNewsUs
         )
     }
     val newsList =_newsList.asStateFlow()
+    private val _news: MutableStateFlow<Pair<String,String>?> by lazy {
+        MutableStateFlow(
+            null
+        )
+    }
+    val news =_news.asStateFlow()
 
-    fun getNews(){
+    fun getNews(search:String){
         viewModelScope.launch {
-            when(val result=getNewsUseCase("kotlin")){
+            when(val result=getNewsUseCase(search)){
                 is ActionResult.Success ->{
                     _newsList.emit(result.data)
                 }
@@ -33,7 +39,17 @@ class NewsListViewModel@Inject constructor(private val getNewsUseCase: GetNewsUs
             }
         }
     }
+    fun clearNews(){
+        viewModelScope.launch {
+            _newsList.emit(listOf())
+        }
+    }
 
+    fun saveUrlNews(url:String,title:String){
+        viewModelScope.launch {
+            _news.emit(Pair<String,String>(url,title))
+        }
+    }
     fun getTopNews(){
         viewModelScope.launch {
             when(val result=getTopNewsUseCase("ru")){
