@@ -5,16 +5,13 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.magnifier
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.Search
-import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material.icons.filled.Share
+import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 @Composable
-fun TopAppBarNewsList(searchNews: (String)->Unit){
+fun TopAppBarNewsList(searchNews: (String)->Unit,topNews: ()->Unit){
     var searchValues by remember { mutableStateOf("") }
         TopAppBar(modifier = Modifier.height(100.dp),
 
@@ -28,8 +25,13 @@ fun TopAppBarNewsList(searchNews: (String)->Unit){
                             .height(30.dp)
                             .width(30.dp))
                 }
-
-            })
+                IconButton(onClick = { topNews()  }) {
+                    Icon(Icons.Filled.Check, null,
+                        Modifier
+                            .height(30.dp)
+                            .width(30.dp))
+                }
+            },)
 
 
 }

@@ -85,5 +85,5 @@ fun NewsImage(news: NewsModel) {
         imageOptions = ImageOptions(
             contentDescription = null,
             contentScale = ContentScale.Crop,
-            ), modifier = Modifier.height(200.dp).wrapContentWidth())
+            ), modifier = Modifier.wrapContentHeight().wrapContentWidth())
 }
